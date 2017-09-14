@@ -8,4 +8,4 @@ Its just a basic Material Design Registration form which will shows the entered 
 
 ## Screenshots
 
-![Activity 1](https://github.com/harshitks2203/MaterialForm/blob/master/Screenshot_20170914-200516.png "Entry Page")
+![Activity 1](https://github.com/harshitks2203/MaterialForm/blob/master/screenshot.jpg "Entry Page")
