@@ -1,14 +1,17 @@
 package com.example.harshit.form;
 
 import android.content.Intent;
+import android.support.annotation.IdRes;
 import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
@@ -20,7 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText username, password, email, phone, dob, tob, state, interest;
     private Button submit;
-    private RadioButton radio;
+    private RadioButton male, female;
+    private RadioGroup radiogp;
+    private String selectedType="";
+
     String[] spinnerList = {"Australia", "Bangladesh", "China", "Denmark", "Egypt", "France", "Germany", "Hong Kong", "India", "Japan" };
 
     @Override
@@ -37,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         state = (EditText)findViewById(R.id.input_state);
         interest = (EditText)findViewById(R.id.input_interest);
         submit = (Button)findViewById(R.id.btn_submit);
+        male = (RadioButton) findViewById(R.id.male_radio_btn);
+        female = (RadioButton) findViewById(R.id.female_radio_btn);
+        radiogp = (RadioGroup) findViewById(R.id.radio_group);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, spinnerList);
@@ -56,22 +65,11 @@ public class MainActivity extends AppCompatActivity {
                 String dob1 = dob.getText().toString();
                 String state1 = state.getText().toString();
 
-                boolean checked = ((RadioButton) view).isChecked();
-                String str = null;
-                switch(view.getId()) {
-                    case R.id.male_radio_btn:
-                        if (checked)
-                        {
-                            str = "Male";
-                            break;
-                        }
-                    case R.id.female_radio_btn:
-                        if (checked)
-                        {
-                            str = "Female";
-                            break;
-                        }
-                }
+                int selectedId = radiogp.getCheckedRadioButtonId();
+
+                RadioButton radiobtn = (RadioButton) findViewById(selectedId);
+
+                selectedType = radiobtn.getText().toString();
 
                 if( username1.equals("") || password1.equals("") || email1.equals("") || phone1.equals("") || interest1.equals("") || dob1.equals("") || tob1.equals("") || state1.equals(""))
                 {
@@ -89,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     i.putExtra("tob", tob1);
                     i.putExtra("dob",dob1);
                     i.putExtra("state", state1);
-                    i.putExtra("gender", str);
+                    i.putExtra("gender",selectedType);
                     startActivity(i);
                 }
 
