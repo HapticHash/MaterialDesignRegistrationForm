@@ -3,8 +3,8 @@
 Its just a basic Material Design Registration form which will shows the entered registration details in new activity
 
 ## Yet Remaining 
-[x] Retrieving Gender Field
-[] Retrieving Country Field
+- [x] Retrieving Gender Field
+- [ ] Retrieving Country Field
 
 ## Screenshots
 
